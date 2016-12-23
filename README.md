@@ -17,7 +17,7 @@ The default theme files have been brought across from Shopify's <a href="https:/
 
 ### Gulp.js
 
-Clone the project into your project root.
+Clone the repo into your project root.
 
 In Terminal, <code>cd</code> into the <code>/dev</code> directory and install the Gulp packages (if you haven't already installed Gulp, you’ll need to <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">do so</a> first):
 
