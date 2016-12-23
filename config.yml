@@ -1,0 +1,13 @@
+development:
+  theme_id:
+  password:
+  store:
+  bucket_size: 40
+  refill_rate: 2
+  concurrency: 2
+  timeout: 30s
+  ignore_files:
+    - .git/*
+    - .gitignore
+    - .idea
+    - dev/*

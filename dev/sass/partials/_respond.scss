@@ -1,0 +1,27 @@
+@mixin respond($viewport) {
+
+  @if $viewport == sm-min {
+    @media (min-width: 768px) { @content; }
+  }
+  @else if $viewport == md-min {
+    @media (min-width: 992px) { @content; }
+  }
+  @else if $viewport == lg-min {
+    @media (min-width: 1200px) { @content; }
+  }
+
+  @else if $viewport == xs-max {
+    @media (max-width: 767px) { @content; }
+  }
+  @else if $viewport == sm-max {
+    @media (min-width: 768px) and (max-width: 991px) { @content; }
+  }
+  @else if $viewport == md-max {
+    @media (min-width: 992px) and (max-width: 1199px) { @content; }
+  }
+
+  @else if $viewport == handheld {
+    @media (max-width: 991px) { @content; }
+  }
+
+}
