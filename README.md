@@ -2,7 +2,7 @@
 Version: 1.0.0
 
 ## Author
-Jase Warner ( <a href="https://twitter.com/jase_io">@jase_io</a> / <a href="http://jase.io">jase_io</a>)
+Jase Warner ( <a href="http://jase.io">http://jase_io</a>)
 
 ## Synopsis
 Gulp + Shopify is for those Developers wishing to use <a href="http://gulpjs.com/">Gulp.js</a> and Shopify's <a href="https://shopify.github.io/themekit/">Theme Kit</a> to develop their Shopify theme – a tidy solution to the problem with Shopify not allowing sub-directories within the <code>/assets</code> directory.
