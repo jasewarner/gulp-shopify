@@ -21,7 +21,7 @@ Clone the repo into your project root.
 
 In Terminal, <code>cd</code> into the <code>/dev</code> directory and install the Gulp packages (if you haven't already installed Gulp, you’ll need to <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">do so</a> first):
 
-<code>sudo npm install</code>
+<code>npm install</code>
 
 Once you have installed the packages, in Terminal, run <code>gulp watch</code>.
 
