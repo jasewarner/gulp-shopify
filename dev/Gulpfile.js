@@ -12,7 +12,7 @@ gulp.task('styles', function () {
     gulp.src('sass/**/*.scss.liquid')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 30 versions'],
+            browsers: ['last 3 versions', '> 5%', 'Explorer >= 10'],
             cascade: false
         }))
         .pipe(rename('theme.scss.liquid'))
