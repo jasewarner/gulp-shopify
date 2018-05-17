@@ -1,30 +1,42 @@
-var autoprefixer = require('gulp-autoprefixer');
-var changed = require('gulp-changed');
-var concat = require('gulp-concat');
-var csslint = require('gulp-csslint');
-var gulp = require('gulp');
-var rename = require("gulp-rename");
-var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
+'use strict';
 
-// Styles.
-gulp.task('styles', function () {
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const autoprefixer = require('gulp-autoprefixer');
+const changed = require('gulp-changed');
+const concat = require('gulp-concat');
+const csslint = require('gulp-csslint');
+const rename = require("gulp-rename");
+const sass = require('gulp-sass');
+const uglify = require('gulp-uglify');
+
+/**
+ * Stylesheet task
+ */
+gulp.task('css', function () {
     gulp.src('sass/**/*.scss.liquid')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['last 30 versions'],
-            cascade: false
+            browsers : ['last 3 versions', '> 5%', 'Explorer >= 10', 'Safari >= 8'],
+            cascade : false
         }))
         .pipe(rename('theme.scss.liquid'))
         .pipe(gulp.dest('../assets/'));
 });
 
-// Scripts.
-var jsFiles = 'js/functions/*.js',
-    jsDest = '../assets/';
+/**
+ * JavaScript task
+ *
+ * @type {string}
+ */
+const jsFiles = 'js/functions/*.js';
+const jsDest = '../assets/';
 
-gulp.task('scripts', function() {
+gulp.task('js', function () {
     return gulp.src(jsFiles)
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(concat('theme.js'))
         .pipe(gulp.dest(jsDest))
         .pipe(rename('theme.min.js'))
@@ -32,24 +44,30 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(jsDest));
 });
 
-// Images.
-gulp.task('images', function() {
+/**
+ * Images task
+ */
+gulp.task('images', function () {
     return gulp.src('image/**')
-        .pipe(changed('../assets/')) // Ignore unchanged files
+        .pipe(changed('../assets/')) // ignore unchanged files
         .pipe(gulp.dest('../assets/'))
 });
 
-// Fonts.
-gulp.task('fonts', function() {
+/**
+ * Fonts task
+ */
+gulp.task('fonts', function () {
     return gulp.src('font/**')
-        .pipe(changed('../assets/')) // Ignore unchanged files
+        .pipe(changed('../assets/')) // ignore unchanged files
         .pipe(gulp.dest('../assets/'))
 });
 
-// Watch.
+/**
+ * Watch task
+ */
 gulp.task('watch', function () {
-    gulp.watch('sass/**/*.scss', ['styles']);
-    gulp.watch('js/**/*.js', ['scripts']);
+    gulp.watch('sass/**/*.scss', ['css']);
+    gulp.watch('js/**/*.js', ['js']);
     gulp.watch('image/*.{jpg,jpeg,png,gif,svg}', ['images']);
     gulp.watch('font/*.{eot,svg,ttf,woff,woff2}', ['fonts']);
 });
