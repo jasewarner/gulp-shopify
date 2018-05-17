@@ -25,7 +25,7 @@ In Terminal, <code>cd</code> into the <code>/dev</code> directory and install th
 
 <code>npm install</code>
 
-<small>Note: you may need to run the command as <code>sudo npm install</code>, depending on your permissions.</small>
+> Note: you may need to run the command as <code>sudo npm install</code>, depending on your permissions.
 
 Once you have installed the packages, in Terminal, run <code>gulp watch</code>.
 
