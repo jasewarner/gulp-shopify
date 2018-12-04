@@ -13,16 +13,16 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^7.0.1",
-    "gulp-changed": "^1.3.2",
-    "gulp-clean-css": "^2.0.12",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-csslint": "^1.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
     "gulp-uncss": "^1.0.6",
-    "node-sass": "^4.10.0"
+    "node-sass": "^4.11.0"
   }
 }
