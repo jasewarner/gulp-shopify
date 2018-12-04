@@ -1,4 +1,6 @@
-// Event wrapper.
+// --------------------------------------------------
+// event wrapper
+
 @mixin on-event($self: false) {
   @if $self {
     &,
@@ -16,14 +18,18 @@
   }
 }
 
-// Contexts.
+// --------------------------------------------------
+// contexts
+
 @mixin when-inside($selector) {
   #{$selector} & {
     @content;
   }
 }
 
-// Font size.
+// --------------------------------------------------
+// font size
+
 @function calculateRem($size) {
   $remSize: $size / 14px;
   @return $remSize * 1rem;
@@ -34,7 +40,9 @@
   font-size: calculateRem($size);
 }
 
-// Background image.
+// --------------------------------------------------
+// background image
+
 $image-path: '{{ asset_url }}' !default;
 $fallback-extension: 'png' !default;
 $retina-suffix: '@2x';
@@ -52,7 +60,9 @@ $retina-suffix: '@2x';
   }
 }
 
-// Clearfix.
+// --------------------------------------------------
+// clearfix
+
 %clearfix {
   *zoom: 1;
   &:before, &:after {
@@ -64,7 +74,9 @@ $retina-suffix: '@2x';
   }
 }
 
-// Animations and keyframes.
+// --------------------------------------------------
+// animations
+
 @mixin keyframes($animation-name) {
   @-webkit-keyframes #{$animation-name} {
     @content;
@@ -91,11 +103,35 @@ $retina-suffix: '@2x';
   animation: #{$str};
 }
 
-// Fonts.
+// --------------------------------------------------
+// fonts
+
 @mixin font-file($asset-font-name) {
   src: url('{{ "#{$asset-font-name}.eot" | asset_url }}');
   src: url('{{ "#{$asset-font-name}.eot" | asset_url }}?#iefix') format("embedded-opentype"),
-url('{{ "#{$asset-font-name}.woff" | asset_url }}') format("woff"),
-url('{{ "#{$asset-font-name}.ttf" | asset_url }}') format("truetype"),
-url('{{ "#{$asset-font-name}.svg" | asset_url }}') format("svg");
+    url('{{ "#{$asset-font-name}.woff" | asset_url }}') format("woff"),
+    url('{{ "#{$asset-font-name}.ttf" | asset_url }}') format("truetype"),
+    url('{{ "#{$asset-font-name}.svg" | asset_url }}') format("svg");
+}
+
+// --------------------------------------------------
+// aspect ratio
+// e.g. @include aspect-ratio(16,9);
+// expects child to have class of `.content` (could be replaced with a wildcard `*`)
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }

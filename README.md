@@ -1,19 +1,22 @@
 # Gulp + Shopify
-Version: 1.0.1
+
+Version: 1.0.2
 
 ## Author
-Jase Warner ( <a href="https://jase.io">https://jase.io</a> )
+
+Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
 ## Synopsis
-Gulp + Shopify is for those Developers wishing to use <a href="http://gulpjs.com/">Gulp.js</a> and Shopify’s <a href="https://shopify.github.io/themekit/">Theme Kit</a> to develop their Shopify theme – a tidy solution to the problem with Shopify not allowing sub-directories within the <code>/assets</code> directory.
 
-The theme is packaged with Gulp for watching and compiling assets in the <code>/dev</code> directory, including SCSS, JS, images and fonts. When modified, said assets are moved across to the <code>/assets</code> directory. 
+Gulp + Shopify is for those Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") and Shopify’s [Theme Kit](https://shopify.github.io/themekit/ "Theme Kit Github page") to develop their Shopify theme &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `/assets` directory.
 
-A selection of helpful mixins is also included, most of which are featured in <a href="http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/">this useful article</a> by <a href="https://twitter.com/seb_ekstrom">@seb_ekstrom</a>.
+The theme is packaged with Gulp for watching and compiling assets in the `/dev` directory, including SCSS, JS, images and fonts. When modified, said assets are moved across to the `/assets` directory. 
 
-You may also write your JavaScript in ES6 – The Gulp scripts task uses <a href="https://babeljs.io/">Babel</a>, so you can use new syntax without worrying about browser support!
+A selection of helpful mixins is also included, most of which are featured in [this useful article](http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/ "Mixins article") by [@seb_ekstrom](https://twitter.com/seb_ekstrom "@seb_ekstrom on Twitter").
 
-The default theme files have been brought across from Shopify’s <a href="https://github.com/Shopify/skeleton-theme">Skeleton theme</a>.
+You may also write your JavaScript in ES6 &ndash; The Gulp scripts task uses [Babel](https://babeljs.io/ "Babel website"), so you can use new syntax without worrying about browser support.
+
+The default theme files have been brought across from Shopify’s [Skeleton theme](https://github.com/Shopify/skeleton-theme "Skeleton theme Github page").
 
 ## Installation
 
@@ -21,45 +24,42 @@ The default theme files have been brought across from Shopify’s <a href="https
 
 Clone the repo into your project root.
 
-In Terminal, <code>cd</code> into the <code>/dev</code> directory and install the Gulp packages (if you haven’t already installed Gulp, you’ll need to <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">do so</a> first):
+In Terminal `cd` into the `/dev` directory and install the Gulp packages (if you haven’t already installed Gulp, you’ll need to [do so](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md "Gulp installation") first):
 
-<code>npm install</code>
+`npm install`
 
-> Note: you may need to run the command as <code>sudo npm install</code>, depending on your permissions.
+Once you have installed the packages, in Terminal, run `gulp watch`.
 
-Once you have installed the packages, in Terminal, run <code>gulp watch</code>.
+Any changes to the SCSS files in `/dev/sass/` will lead to the creation of `theme.scss.liquid` in `assets`.
 
-Any changes to the SCSS files in <code>/dev/sass/</code> will lead to the creation of <code>theme.scss.liquid</code> in <code>assets</code>.
+Any alterations to the JS files in `/dev/js/functions/` will be concatenated and uglified in `/assets` to `theme.js` and `theme.min.js`.
 
-Any alterations to the JS files in <code>/dev/js/functions/</code> will be concatenated and uglified in <code>/assets</code> to <code>theme.js</code> and <code>theme.min.js</code>.
-
-Images added to <code>/dev/image</code> will be copied across to the <code>/assets</code> directory. Similarly, any fonts added to <code>/dev/font</code> will be copied across to <code>/assets</code>.
+Images added to `/dev/image` will be copied across to the `/assets` directory. Similarly, any fonts added to `/dev/font` will be copied across to `/assets`.
 
 ### Theme Kit
 
-To get Theme Kit up and running, follow the instructions <a href="https://shopify.github.io/themekit/#installation">here</a>.
+To get Theme Kit up and running, follow the instructions [here](https://shopify.github.io/themekit/#installation "Theme Kit installation instructions").
 
-The <code>config.yml</code> file is included in the repo, ready to be filled in with the necessary details.
+The `config.yml` file is included in the repo, ready to be filled in with the necessary details.
 
-To get started on your theme, follow <a href="https://shopify.github.io/themekit/#use-a-new-theme">these instructions</a>.
+To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
 
 ## Features
+
 The Gulp build features the following helpful packages:
-<ul>
-  <li><a href="https://github.com/sindresorhus/gulp-autoprefixer">gulp-autoprefixer</a></li>
-  <li><a href="https://github.com/babel/gulp-babel">gulp-babel</a></li>
-  <li><a href="https://github.com/scniro/gulp-clean-css">gulp-clean-css</a></li>
-  <li><a href="https://github.com/contra/gulp-concat">gulp-concat</a></li>
-  <li><a href="https://github.com/lazd/gulp-csslint">gulp-csslint</a></li>
-  <li><a href="https://github.com/hparra/gulp-rename">gulp-rename</a></li>
-  <li><a href="https://github.com/dlmanning/gulp-sass">gulp-sass</a></li>
-  <li><a href="https://github.com/terinjokes/gulp-uglify">gulp-uglify</a></li>
-</ul>
+
+* [gulp-autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer "gulp-autoprefixer Github page")
+* [gulp-babel](https://github.com/babel/gulp-babel "gulp-babel Github page")
+* [gulp-clean-css](https://github.com/scniro/gulp-clean-css "gulp-clean-css Github page")
+* [gulp-concat](https://github.com/contra/gulp-concat "gulp-concat Github page")
+* [gulp-csslint](https://github.com/lazd/gulp-csslint "gulp-csslint Github page")
+* [gulp-rename](https://github.com/hparra/gulp-rename "gulp-rename Github page")
+* [gulp-sass](https://github.com/dlmanning/gulp-sass "gulp-sass Github page")
+* [gulp-uglify](https://github.com/terinjokes/gulp-uglify "gulp-uglify Github page")
 
 ## Credits
-<ul>
-  <li><a href="https://github.com/Shopify/skeleton-theme">Shopify Skeleton Theme</a></li>
-  <li><a href="http://gulpjs.com/">Gulp.js</a></li>
-  <li><a href="https://shopify.github.io/themekit/">Theme Kit</a></li>
-  <li><a href="http://sass-lang.com/">SASS / SCSS</a></li>
-</ul>
+
+* [Shopify Skeleton Theme](https://github.com/Shopify/skeleton-theme "Shopify Skeleton Theme Github page")
+* [Gulp.js](http://gulpjs.com/ "Gulp.js website")
+* [Theme Kit](https://shopify.github.io/themekit/ "Shopify Theme Kit Github page")
+* [SASS / SCSS](http://sass-lang.com/ "SASS website")
