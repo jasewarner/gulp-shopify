@@ -44,6 +44,7 @@ Thumbs.db
 
 # track these files, if they exist
 !.gitignore
+!.scss-lint.yml
 !.editorconfig
 !README.md
 !CHANGELOG.md
