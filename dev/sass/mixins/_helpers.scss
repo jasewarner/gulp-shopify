@@ -9,7 +9,8 @@
     &:focus {
       @content;
     }
-  } @else {
+  }
+  @else {
     &:hover,
     &:active,
     &:focus {
@@ -30,28 +31,27 @@
 // --------------------------------------------------
 // font size
 
-@function calculateRem($size) {
-  $remSize: $size / 14px;
-  @return $remSize * 1rem;
+@function calculate-rem($size) {
+  $rem-size: $size / 14px;
+  @return $rem-size * 1rem;
 }
 
 @mixin font-size($size) {
-  font-size: $size;
-  font-size: calculateRem($size);
+  font-size: calculate-rem($size);
 }
 
 // --------------------------------------------------
 // background image
 
-$image-path: '{{ asset_url }}' !default;
-$fallback-extension: 'png' !default;
-$retina-suffix: '@2x';
-@mixin background-image($name, $size:false){
+$image-path: "{{ asset_url }}" !default;
+$fallback-extension: "png" !default;
+$retina-suffix: "@2x";
+@mixin background-image($name, $size:false) {
   background-image: url( #{'{{ "#{$name}.svg" | asset_url }}'} );
-  @if($size){
+  @if($size) {
     background-size: $size;
   }
-  .no-svg &{
+  .no-svg & {
     background-image: url( #{'{{ "#{$name}.#{$fallback-extension}" | asset_url }}'} );
 
     @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
@@ -64,8 +64,8 @@ $retina-suffix: '@2x';
 // clearfix
 
 %clearfix {
-  *zoom: 1;
-  &:before, &:after {
+  &:before,
+  &:after {
     content: " ";
     display: table;
   }
@@ -78,28 +78,12 @@ $retina-suffix: '@2x';
 // animations
 
 @mixin keyframes($animation-name) {
-  @-webkit-keyframes #{$animation-name} {
-    @content;
-  }
-  @-moz-keyframes #{$animation-name} {
-    @content;
-  }
-  @-ms-keyframes #{$animation-name} {
-    @content;
-  }
-  @-o-keyframes #{$animation-name} {
-    @content;
-  }
   @keyframes #{$animation-name} {
     @content;
   }
 }
 
 @mixin animation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
   animation: #{$str};
 }
 
@@ -107,8 +91,8 @@ $retina-suffix: '@2x';
 // fonts
 
 @mixin font-file($asset-font-name) {
-  src: url('{{ "#{$asset-font-name}.eot" | asset_url }}');
-  src: url('{{ "#{$asset-font-name}.eot" | asset_url }}?#iefix') format("embedded-opentype"),
+  src: url('{{ "#{$asset-font-name}.eot" | asset_url }}'),
+    url('{{ "#{$asset-font-name}.eot" | asset_url }}?#iefix') format("embedded-opentype"),
     url('{{ "#{$asset-font-name}.woff" | asset_url }}') format("woff"),
     url('{{ "#{$asset-font-name}.ttf" | asset_url }}') format("truetype"),
     url('{{ "#{$asset-font-name}.svg" | asset_url }}') format("svg");
