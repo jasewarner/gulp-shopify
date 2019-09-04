@@ -18,6 +18,8 @@ You may also write your JavaScript in ES6 &ndash; The Gulp scripts task uses [Ba
 
 The default theme files have been brought across from Shopify’s [Skeleton theme](https://github.com/Shopify/skeleton-theme "Skeleton theme Github page").
 
+The theme includes the Bootstrap 4 grid and reboot scss files. These can be removed in `theme.scss.liquid`, or indeed, you may add more Bootstrap SCSS files using @import via `./node_modules/bootstrap-scss/`.
+
 ## Installation
 
 ### Gulp.js
