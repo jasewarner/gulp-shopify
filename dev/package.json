@@ -12,6 +12,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
+    "bootstrap-scss": "^4.3.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^7.0.1",
@@ -23,6 +24,13 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.1",
     "gulp-uncss": "^1.0.6",
+    "jquery": "^3.4.1",
     "node-sass": "^4.11.0"
-  }
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

@@ -11,25 +11,27 @@ const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 
 /**
- * Stylesheet task
+ * SCSS task
  */
 gulp.task('css', function () {
-    gulp.src('sass/**/*.scss.liquid')
+    gulp.src('scss/**/*.scss.liquid')
         .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers : ['last 3 versions', '> 5%', 'Explorer >= 10', 'Safari >= 8'],
-            cascade : false
-        }))
+        .pipe(autoprefixer({ cascade : false }))
         .pipe(rename('theme.scss.liquid'))
         .pipe(gulp.dest('../assets/'));
 });
 
 /**
- * JavaScript task
+ * JS task
  *
- * @type {string}
+ * Note: you may or may not want to include the 2 below:
+ * babel polyfill and jquery
  */
-const jsFiles = 'js/functions/*.js';
+const jsFiles = [
+    // './node_modules/babel-polyfill/dist/polyfill.js',
+    // './node_modules/jquery/dist/jquery.slim.js',
+    'js/*.js',
+];
 const jsDest = '../assets/';
 
 gulp.task('js', function () {
@@ -66,8 +68,8 @@ gulp.task('fonts', function () {
  * Watch task
  */
 gulp.task('watch', function () {
-    gulp.watch('sass/**/*.scss', ['css']);
-    gulp.watch('js/**/*.js', ['js']);
+    gulp.watch('scss/**/*.scss', ['css']);
+    gulp.watch('js/*.js', ['js']);
     gulp.watch('image/*.{jpg,jpeg,png,gif,svg}', ['images']);
     gulp.watch('font/*.{eot,svg,ttf,woff,woff2}', ['fonts']);
 });

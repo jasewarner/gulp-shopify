@@ -1,17 +1,42 @@
-(function ($) {
+'use strict';
 
-    $(document).ready(function ($) {
+var common = function ($) {
+    'use strict';
 
+    /**
+     * Some function
+     *
+     * @since   1.0.0
+     */
 
+    var someFunction = function someFunction() {
+        // do something
+    };
 
-    });
+    /**
+     * Fire events on document ready and bind other events
+     *
+     * @since   1.0.0
+     */
+    var ready = function ready() {
+        someFunction();
+    };
 
-})(jQuery);
+    /**
+     * Only expose the ready function to the world
+     */
+    return {
+        ready: ready
+    };
+}(jQuery);
+
+jQuery(common.ready);
+'use strict';
 
 /*============================*/
 /* Update main product image. */
 /*============================*/
-var switchImage = function(newImageSrc, newImage, mainImageDomEl) {
+var switchImage = function switchImage(newImageSrc, newImage, mainImageDomEl) {
     // newImageSrc is the path of the new image in the same size as originalImage is sized.
     // newImage is Shopify's object representation of the new image, with various attributes, such as scr, id, position.
     // mainImageDomEl is the passed domElement, which has not yet been manipulated. Let's manipulate it now.
@@ -19,23 +44,23 @@ var switchImage = function(newImageSrc, newImage, mainImageDomEl) {
     jQuery(mainImageDomEl).attr('src', newImageSrc);
 };
 
-jQuery(function($) {
+jQuery(function ($) {
 
     /* Placeholder JS */
     /*==========================*/
     var test = document.createElement('input');
     if (!('placeholder' in test)) {
-        $('[placeholder]').each(function(){
+        $('[placeholder]').each(function () {
             if ($(this).val() === '') {
                 var hint = $(this).attr('placeholder');
                 $(this).val(hint).addClass('hint');
             }
         });
-        $('[placeholder]').focus(function() {
+        $('[placeholder]').focus(function () {
             if ($(this).val() === $(this).attr('placeholder')) {
                 $(this).val('').removeClass('hint');
             }
-        }).blur(function() {
+        }).blur(function () {
             if ($(this).val() === '') {
                 $(this).val($(this).attr('placeholder')).addClass('hint');
             }
@@ -45,12 +70,12 @@ jQuery(function($) {
     /* Form validation JS */
     /*==========================*/
 
-    $('input.error, textarea.error').focus(function() {
+    $('input.error, textarea.error').focus(function () {
         $(this).removeClass('error');
     });
 
-    $('form :submit').click(function() {
-        $(this).parents('form').find('input.hint, textarea.hint').each(function() {
+    $('form :submit').click(function () {
+        $(this).parents('form').find('input.hint, textarea.hint').each(function () {
             $(this).val('').removeClass('hint');
         });
         return true;
@@ -59,9 +84,9 @@ jQuery(function($) {
     /* Remove SVG images to avoid broken images in all browsers that don't support SVG. */
     /*==========================*/
 
-    var supportsSVG = function() {
+    var supportsSVG = function supportsSVG() {
         return document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1');
-    }
+    };
     if (!supportsSVG()) {
         $('img[src*=".svg"]').remove();
     }
@@ -69,7 +94,7 @@ jQuery(function($) {
     /* Prepare to have floated images fill the width of the design on blog pages on small devices. */
     /*==========================*/
 
-    var images = $('.article img').load(function() {
+    var images = $('.article img').load(function () {
         var src = $(this).attr('src').replace(/_grande\.|_large\.|_medium\.|_small\./, '.');
         var width = $(this).width();
         $(this).attr('src', src).attr('width', width).removeAttr('height');
@@ -77,9 +102,8 @@ jQuery(function($) {
 
     /* Update main product image when a thumbnail is clicked. */
     /*==========================*/
-    $('.product-photo-thumb a').on('click', function(e) {
+    $('.product-photo-thumb a').on('click', function (e) {
         e.preventDefault();
         switchImage($(this).attr('href'), null, $('.product-photo-container img')[0]);
-    } );
-
+    });
 });
