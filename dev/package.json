@@ -22,6 +22,7 @@
     "gulp-csslint": "^1.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-scss-lint": "^1.0.0",
     "gulp-uglify": "^3.0.1",
     "gulp-uncss": "^1.0.6",
     "jquery": "^3.4.1",

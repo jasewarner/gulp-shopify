@@ -1,6 +1,6 @@
 # Gulp + Shopify
 
-Version: 1.0.4
+Version: 1.0.5
 
 ## Author
 
@@ -58,6 +58,7 @@ The Gulp build features the following helpful packages:
 * [gulp-rename](https://github.com/hparra/gulp-rename "gulp-rename Github page")
 * [gulp-sass](https://github.com/dlmanning/gulp-sass "gulp-sass Github page")
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify "gulp-uglify Github page")
+* [gulp-scss-lint](https://github.com/juanfran/gulp-scss-lint "gulp-scss-lint Github page")
 
 ## Credits
 

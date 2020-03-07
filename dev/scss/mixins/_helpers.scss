@@ -30,77 +30,26 @@
 // --------------------------------------------------
 // font size
 
-@function calculateRem($size) {
-  $remSize: $size / 14px;
-  @return $remSize * 1rem;
+@function calculate-rem($size) {
+  $rem-size: $size / 16px;
+  @return $rem-size * 1rem;
 }
 
 @mixin font-size($size) {
-  font-size: $size;
-  font-size: calculateRem($size);
+  font-size: calculate-rem($size);
 }
 
 // --------------------------------------------------
-// background image
+// svg background image
 
 $image-path: '{{ asset_url }}' !default;
-$fallback-extension: 'png' !default;
-$retina-suffix: '@2x';
-@mixin background-image($name, $size:false){
+
+@mixin background-svg($name, $size: false) {
   background-image: url( #{'{{ "#{$name}.svg" | asset_url }}'} );
-  @if($size){
+
+  @if ($size) {
     background-size: $size;
   }
-  .no-svg &{
-    background-image: url( #{'{{ "#{$name}.#{$fallback-extension}" | asset_url }}'} );
-
-    @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-      background-image: url( #{'{{ "#{$name}#{$retina-suffix}.#{$fallback-extension}" | asset_url }}'} );
-    }
-  }
-}
-
-// --------------------------------------------------
-// clearfix
-
-%clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
-
-// --------------------------------------------------
-// animations
-
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes #{$animation-name} {
-    @content;
-  }
-  @-moz-keyframes #{$animation-name} {
-    @content;
-  }
-  @-ms-keyframes #{$animation-name} {
-    @content;
-  }
-  @-o-keyframes #{$animation-name} {
-    @content;
-  }
-  @keyframes #{$animation-name} {
-    @content;
-  }
-}
-
-@mixin animation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
-  animation: #{$str};
 }
 
 // --------------------------------------------------
@@ -121,17 +70,19 @@ $retina-suffix: '@2x';
 
 @mixin aspect-ratio($width, $height) {
   position: relative;
-  &:before {
+
+  &::before {
+    content: '';
     display: block;
-    content: "";
-    width: 100%;
     padding-top: ($height / $width) * 100%;
+    width: 100%;
   }
+
   > .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
