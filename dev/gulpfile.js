@@ -13,58 +13,55 @@ const scsslint = require('gulp-scss-lint');
 /**
  * Asset paths.
  */
-const scssSrc = 'scss/**/*.scss';
-const jsSrc = 'js/*.js';
+const srcSCSS = 'scss/**/*.scss';
+const srcJS = 'js/*.js';
 const assetsDir = '../assets/';
 
 /**
  * Scss lint
  */
-gulp.task('scss-lint', function() {
-    return gulp.src(scssSrc)
+gulp.task('scss-lint', () => {
+    return gulp.src(srcSCSS)
         .pipe(scsslint());
 });
 
 /**
  * SCSS task
  */
-gulp.task('css', ['scss-lint'], function () {
-    return gulp.src('scss/**/*.scss.liquid')
+gulp.task('scss', gulp.series('scss-lint', () => {
+    return gulp.src('scss/theme.scss.liquid')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({ cascade : false }))
         .pipe(rename('theme.scss.liquid'))
         .pipe(gulp.dest(assetsDir));
-});
+}));
 
 /**
  * JS task
  *
- * Note: you may or may not want to include the 2 below:
- * babel polyfill and jquery
+ * Note: use npm to install libraries and add them below, like the babel-polyfill example
  */
 const jsFiles = [
     // './node_modules/babel-polyfill/dist/polyfill.js',
-    // './node_modules/jquery/dist/jquery.slim.js',
-    jsSrc,
+    srcJS,
 ];
-const jsDest = assetsDir;
 
-gulp.task('js', function () {
+gulp.task('js', () => {
     return gulp.src(jsFiles)
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['@babel/preset-env']
         }))
         .pipe(concat('theme.js'))
-        .pipe(gulp.dest(jsDest))
+        .pipe(gulp.dest(assetsDir))
         .pipe(rename('theme.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDest));
+        .pipe(gulp.dest(assetsDir));
 });
 
 /**
  * Images task
  */
-gulp.task('images', function () {
+gulp.task('images', () => {
     return gulp.src('image/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
@@ -73,7 +70,7 @@ gulp.task('images', function () {
 /**
  * Fonts task
  */
-gulp.task('fonts', function () {
+gulp.task('fonts', () => {
     return gulp.src('font/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
@@ -82,14 +79,14 @@ gulp.task('fonts', function () {
 /**
  * Watch task
  */
-gulp.task('watch', function () {
-    gulp.watch(scssSrc, ['css']);
-    gulp.watch(jsSrc, ['js']);
-    gulp.watch('image/*.{jpg,jpeg,png,gif,svg}', ['images']);
-    gulp.watch('font/*.{eot,svg,ttf,woff,woff2}', ['fonts']);
+gulp.task('watch', () => {
+    gulp.watch(srcSCSS, gulp.series('scss'));
+    gulp.watch(srcJS, gulp.series('js'));
+    gulp.watch('image/*.{jpg,jpeg,png,gif,svg}', gulp.series('images'));
+    gulp.watch('font/*.{eot,svg,ttf,woff,woff2}', gulp.series('fonts'));
 });
 
 /**
  * Default task
  */
-gulp.task('default', ['css', 'js', 'images', 'fonts'] );
+gulp.task('default', gulp.series('scss', 'js', 'images', 'fonts'));

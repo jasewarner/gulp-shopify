@@ -1,31 +1,18 @@
-const common = (($) => {
-    'use strict';
+document.addEventListener('DOMContentLoaded', () => {
 
     /**
-     * Some function
-     *
-     * @since   1.0.0
+     * Feel free to remove this function!
      */
-    const someFunction = () => {
+    const testFunction = () => {
+
         // do something
+        console.log('Testing… 1, 2, 3');
+
     };
 
     /**
-     * Fire events on document ready and bind other events
-     *
-     * @since   1.0.0
+     * Chocks away!
      */
-    const ready = () => {
-        someFunction();
-    };
+    testFunction();
 
-    /**
-     * Only expose the ready function to the world
-     */
-    return {
-        ready: ready
-    }
-
-})(jQuery);
-
-jQuery(common.ready);
+});
