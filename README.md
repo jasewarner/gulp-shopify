@@ -43,6 +43,7 @@ Images added to `dev/image` will be copied across to the `assets` directory. Sim
 To get Theme Kit up and running, follow the instructions [here](https://shopify.github.io/themekit/#installation "Theme Kit installation instructions").
 
 The `config.yml` file is included in the repo, ready to be filled in with the necessary details.
+
 **Important: DO NOT commit the `config.yml` file to your repo. Add it to the `.gitignore` before committing. The only reason it’s committed in this repo is to aid Theme Kit newbies get up and running.**
 
 To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
