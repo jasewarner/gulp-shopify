@@ -10,7 +10,7 @@ Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
 ## Synopsis
 
-Gulp + Shopify is for those Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") and Shopify’s [Theme Kit](https://shopify.github.io/themekit/ "Theme Kit GitHub page") to develop their Shopify theme &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
+*Gulp + Shopify* is for those Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") and Shopify’s [Theme Kit](https://shopify.github.io/themekit/ "Theme Kit GitHub page") to develop their Shopify theme &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
 
 The theme is packaged with Gulp for watching and compiling assets in the `dev` directory, including SCSS, JS, images and fonts. When modified, said assets are moved across to the `assets` directory. 
 
