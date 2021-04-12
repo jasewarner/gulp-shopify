@@ -5,7 +5,8 @@ const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
 const changed = require('gulp-changed');
 const concat = require('gulp-concat');
-const rename = require("gulp-rename");
+const rename = require('gulp-rename');
+const replace = require('gulp-replace');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const scsslint = require('gulp-scss-lint');
@@ -30,9 +31,11 @@ gulp.task('scss-lint', () => {
  */
 gulp.task('scss', gulp.series('scss-lint', () => {
     return gulp.src('scss/theme.scss.liquid')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
         .pipe(autoprefixer({ cascade : false }))
         .pipe(rename('theme.scss.liquid'))
+        .pipe(replace('"{{', "{{"))
+        .pipe(replace('}}"', "}}"))
         .pipe(gulp.dest(assetsDir));
 }));
 
@@ -62,7 +65,7 @@ gulp.task('js', () => {
  * Images task
  */
 gulp.task('images', () => {
-    return gulp.src('image/**')
+    return gulp.src('images/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
 });
@@ -71,7 +74,7 @@ gulp.task('images', () => {
  * Fonts task
  */
 gulp.task('fonts', () => {
-    return gulp.src('font/**')
+    return gulp.src('fonts/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
 });
@@ -82,8 +85,8 @@ gulp.task('fonts', () => {
 gulp.task('watch', () => {
     gulp.watch(srcSCSS, gulp.series('scss'));
     gulp.watch(srcJS, gulp.series('js'));
-    gulp.watch('image/*.{jpg,jpeg,png,gif,svg}', gulp.series('images'));
-    gulp.watch('font/*.{eot,svg,ttf,woff,woff2}', gulp.series('fonts'));
+    gulp.watch('images/*.{jpg,jpeg,png,gif,svg}', gulp.series('images'));
+    gulp.watch('fonts/*.{eot,svg,ttf,woff,woff2}', gulp.series('fonts'));
 });
 
 /**

@@ -1,0 +1,14 @@
+// use `config/settings_schema.json` values in scss
+//
+// for example: `settings.colour_body_text` could be used like so:
+// `$body-color: shopify('colour_body_text');` (if declaring a variable in `_variables.scss`)
+// or simply:
+// body {
+//   color: shopify('colour_body_text')
+// }
+//
+// Thanks to @derekmorash https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c
+
+@function shopify($setting) {
+  @return unquote('"{{ settings.' + $setting + ' }}"');
+}
