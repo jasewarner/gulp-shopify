@@ -12,7 +12,7 @@ Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
 *Gulp + Shopify* is for those Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") and Shopify’s [Theme Kit](https://shopify.github.io/themekit/ "Theme Kit GitHub page") to develop their Shopify theme &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
 
-The theme is packaged with Gulp for watching and compiling assets in the `dev` directory, including SCSS, JS, images and fonts. When modified, said assets are moved across to the `assets` directory. 
+The theme is packaged with Gulp for watching and compiling assets in the `dev` directory, including SCSS, JS, images, and fonts. When modified, said assets are moved across to the `assets` directory.
 
 A selection of helpful mixins is also included, most of which are featured in [this useful article](http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/ "Mixins article") by [@seb_ekstrom](https://twitter.com/seb_ekstrom "@seb_ekstrom on Twitter").
 
@@ -50,6 +50,33 @@ The `config.yml` file is included in the repo, ready to be filled in with the ne
 
 To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
 
+**Tip:** Use the `shopify()` SCSS function to use values declared in `config/settings_schema.json`. For example:
+
+```json
+{
+  "type": "color",
+  "id": "colour_body_text",
+  "label": "Body text",
+  "default": "#000"
+}
+```
+
+The HEX value returned from the above example could be used in the SCSS by utilising the `shopify()` function like so:
+
+```css
+body {
+  color: shopify('colour_body_text');
+}
+```
+
+or, if declaring a variable, like this:
+
+```scss
+$body-text: shopify('colour_body_text');
+```
+
+It’s a neat solution, and you have [@derekmorash](https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c) to thank for it!
+
 ## Features
 
 The Gulp build features the following helpful packages:
@@ -60,6 +87,7 @@ The Gulp build features the following helpful packages:
 * [gulp-concat](https://github.com/contra/gulp-concat "gulp-concat GitHub page")
 * [gulp-csslint](https://github.com/lazd/gulp-csslint "gulp-csslint GitHub page")
 * [gulp-rename](https://github.com/hparra/gulp-rename "gulp-rename GitHub page")
+* [gulp-replace](https://github.com/lazd/gulp-replace "gulp-replace GitHub page")
 * [gulp-sass](https://github.com/dlmanning/gulp-sass "gulp-sass GitHub page")
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify "gulp-uglify GitHub page")
 * [gulp-scss-lint](https://github.com/juanfran/gulp-scss-lint "gulp-scss-lint GitHub page")
