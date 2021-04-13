@@ -40,16 +40,6 @@ Any alterations to the JS files in `dev/js/` will be concatenated and uglified i
 
 Images added to `dev/image` will be copied across to the `assets` directory. Similarly, any fonts added to `dev/font` will be copied across to `assets`.
 
-### Theme Kit
-
-To get Theme Kit up and running, follow the instructions [here](https://shopify.github.io/themekit/#installation "Theme Kit installation instructions").
-
-The `config.yml` file is included in the repo, ready to be filled in with the necessary details.
-
-**Important: DO NOT commit the `config.yml` file to your repo. Add it to the `.gitignore` before committing. The only reason it’s committed in this repo is to aid Theme Kit newbies get up and running.**
-
-To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
-
 **Tip:** Use the `shopify()` SCSS function to use values declared in `config/settings_schema.json`. For example:
 
 ```json
@@ -76,6 +66,16 @@ $body-text: shopify('colour_body_text');
 ```
 
 It’s a neat solution, and you have [@derekmorash](https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c) to thank for it!
+
+### Theme Kit
+
+To get Theme Kit up and running, follow the instructions [here](https://shopify.github.io/themekit/#installation "Theme Kit installation instructions").
+
+The `config.yml` file is included in the repo, ready to be filled in with the necessary details.
+
+**Important: DO NOT commit the `config.yml` file to your repo. Add it to the `.gitignore` before committing. The only reason it’s committed in this repo is to aid Theme Kit newbies get up and running.**
+
+To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
 
 ## Features
 
