@@ -62,7 +62,7 @@ body {
 or, if declaring a variable, like this:
 
 ```scss
-$body-text: shopify('colour_body_text');
+$body-color: shopify('colour_body_text');
 ```
 
 It’s a neat solution, and you have [@derekmorash](https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c) to thank for it!
