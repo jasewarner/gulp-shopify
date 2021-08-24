@@ -10,4 +10,5 @@ development:
     - .git/*
     - .gitignore
     - .idea
+    - .theme-check.yml
     - dev/*
