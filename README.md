@@ -1,6 +1,6 @@
 # Gulp + Shopify
 
-Version: 1.0.7
+Version: 2.0.0
 
 ## Author
 
@@ -8,9 +8,11 @@ Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
 > If this project has been a helping hand to you, feel free to [buy this grateful developer a beer](https://www.buymeacoffee.com/jasewarner/) 🍻
 
+**Update:** 2021/09/15 – This project has been updated to support [Online Store 2.0](https://www.shopify.com/partners/blog/shopify-online-store "Online Store 2.0 article") features.
+
 ## Synopsis
 
-*Gulp + Shopify* is for those Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") and Shopify’s [Theme Kit](https://shopify.github.io/themekit/ "Theme Kit GitHub page") to develop their Shopify theme &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
+*Gulp + Shopify* is for Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") in combination with [Shopify CLI](https://shopify.dev/themes/tools/cli "Shopify CLI page") to develop Shopify themes &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
 
 The theme is packaged with Gulp for watching and compiling assets in the `dev` directory, including SCSS, JS, images, and fonts. When modified, said assets are moved across to the `assets` directory.
 
@@ -18,9 +20,9 @@ A selection of helpful mixins is also included, most of which are featured in [t
 
 You may also write your JavaScript in ES6 &ndash; The Gulp scripts task uses [Babel](https://babeljs.io/ "Babel website"), so you can use the latest syntax without worrying about browser support.
 
-The default theme files have been brought across from Shopify’s [Starter Theme](https://github.com/Shopify/starter-theme "Starter Theme GitHub page").
+The theme Liquid and JSON files are all blank canvases – zero faffing, meaning you can crack on with the build right away.
 
-The theme includes the Bootstrap 4 grid and reboot scss files. These can be removed in `theme.scss.liquid`, or indeed, you may add more Bootstrap SCSS files using @import via `./node_modules/bootstrap-scss/`.
+The theme includes the Bootstrap 4 grid and reboot scss files. These can be removed in `theme.scss.liquid` and `password.scss.liquid`, or, if you so wish, you may add more Bootstrap SCSS files using @import via `./node_modules/bootstrap-scss/`.
 
 ## Installation
 
@@ -34,9 +36,9 @@ In Terminal `cd` into the `dev` directory and install the Gulp packages (if you 
 
 Once you have installed the packages, in Terminal, run `gulp watch`.
 
-Any changes to the SCSS files in `dev/sass/` will lead to the creation of `theme.scss.liquid` in `assets`.
+Any changes to the SCSS files in `dev/sass/` will be reflected in `theme.scss.liquid` and/or `password.scss.liquid` in `assets`.
 
-Any alterations to the JS files in `dev/js/` will be concatenated and uglified in `assets` to `theme.js` and `theme.min.js`.
+Any alterations to the JS files in `dev/js/` will be concatenated and uglified in `assets` to `theme.js`.
 
 Images added to `dev/image` will be copied across to the `assets` directory. Similarly, any fonts added to `dev/font` will be copied across to `assets`.
 
@@ -67,15 +69,11 @@ $body-color: shopify('colour_body_text');
 
 It’s a neat solution, and you have [@derekmorash](https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c) to thank for it!
 
-### Theme Kit
+### Shopify CLI
 
-To get Theme Kit up and running, follow the instructions [here](https://shopify.github.io/themekit/#installation "Theme Kit installation instructions").
+To get Shopify CLI up and running, follow the instructions [here](https://shopify.dev/themes/tools/cli/installation "Shopify CLI installation instructions").
 
-The `config.yml` file is included in the repo, ready to be filled in with the necessary details.
-
-**Important: DO NOT commit the `config.yml` file to your repo. Add it to the `.gitignore` before committing. The only reason it’s committed in this repo is to aid Theme Kit newbies get up and running.**
-
-To get started on your theme, follow [these instructions](https://shopify.github.io/themekit/#use-a-new-theme "Theme Kit usage instructions").
+To get started on your theme, follow [these instructions](https://shopify.dev/themes/tools/cli/getting-started "Shopify CLI usage instructions").
 
 ## Features
 
@@ -94,7 +92,6 @@ The Gulp build features the following helpful packages:
 
 ## Credits
 
-* [Shopify Skeleton Theme](https://github.com/Shopify/skeleton-theme "Shopify Skeleton Theme GitHub page")
 * [Gulp.js](http://gulpjs.com/ "Gulp.js website")
-* [Theme Kit](https://shopify.github.io/themekit/ "Shopify Theme Kit GitHub page")
+* [Shopify CLI](https://shopify.dev/themes/tools/cli "Shopify CLI page")
 * [SASS / SCSS](http://sass-lang.com/ "SASS website")

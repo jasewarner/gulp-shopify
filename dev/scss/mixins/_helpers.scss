@@ -1,33 +1,4 @@
 // --------------------------------------------------
-// event wrapper
-
-@mixin on-event($self: false) {
-  @if $self {
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  } @else {
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  }
-}
-
-// --------------------------------------------------
-// contexts
-
-@mixin when-inside($selector) {
-  #{$selector} & {
-    @content;
-  }
-}
-
-// --------------------------------------------------
 // font size
 
 @function calculate-rem($size) {
@@ -86,3 +57,34 @@ $image-path: '{{ asset_url }}' !default;
     top: 0;
   }
 }
+
+// --------------------------------------------------
+// links
+
+@mixin make-link($normal: $link-color, $hover: $link-hover-color, $active: $link-active-color) {
+  color: $normal;
+
+  &:hover {
+    color: $hover;
+  }
+
+  &:active {
+    color: $active;
+  }
+}
+
+// --------------------------------------------------
+// viewport height fix
+// this fixes issue where address bar in touch devices messes `vh` up
+
+//scss-lint:disable all
+@mixin vh-height-min($height: 100) {
+  min-height: #{$height}vh; // fallback for browsers that do not support Custom Props
+  min-height: calc(var(--vh) * #{$height});
+}
+
+@mixin vh-height($height: 100) {
+  height: #{$height}vh; // fallback for browsers that do not support Custom Props
+  height: calc(var(--vh) * #{$height});
+}
+//scss-lint:enable all

@@ -48,3 +48,4 @@ Thumbs.db
 !README.md
 !CHANGELOG.md
 !composer.json
+!.scss-lint.yml

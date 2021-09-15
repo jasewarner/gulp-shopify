@@ -1,6 +1,12 @@
 // --------------------------------------------------
 // colours
 
-$color-black:         #000;
-$color-grey:          #ccc;
-$color-white:         #fff;
+$color-black:                   #000;
+$color-grey:                    #ccc;
+$color-white:                   #fff;
+
+// links
+
+$link-color:                    $color-black;
+$link-hover-color:              lighten($link-color, 5);
+$link-active-color:             lighten($link-color, 10);
