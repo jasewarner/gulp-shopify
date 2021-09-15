@@ -75,7 +75,7 @@ To get Shopify CLI up and running, follow the instructions [here](https://shopif
 
 To get started on your theme, follow [these instructions](https://shopify.dev/themes/tools/cli/getting-started "Shopify CLI usage instructions").
 
-> Important: Unfortunately the Shopify CLI hot reload feature fires too soon for Shopify to serve any updated assets, such as CSS or JS. I’ve only been working with Shopify CLI for a couple of weeks now, so maybe I’ve missed something, but I’m finding that a manual reload is still required after every change.
+> Important: Unfortunately the Shopify CLI hot reload feature fires too soon for Shopify to serve any updated assets, such as CSS or JS. I’ve only been working with Shopify CLI for a couple of weeks now, so maybe I’ve missed something, but I’m finding that a manual reload (delayed by a second or two) is still required after every change.
 
 ## Features
 
