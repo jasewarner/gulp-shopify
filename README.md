@@ -8,9 +8,9 @@ Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
 > If this project has been a helping hand to you, feel free to [buy this grateful developer a beer](https://www.buymeacoffee.com/jasewarner/) 🍻
 
-**Update:** 2021/09/15 – This project has been updated to support [Online Store 2.0](https://www.shopify.com/partners/blog/shopify-online-store "Online Store 2.0 article") features.
-
 ## Synopsis
+
+**Update:** 2021/09/15 – This project has been updated to support [Online Store 2.0](https://www.shopify.com/partners/blog/shopify-online-store "Online Store 2.0 article") features.
 
 *Gulp + Shopify* is for Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") in combination with [Shopify CLI](https://shopify.dev/themes/tools/cli "Shopify CLI page") to develop Shopify themes &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
 
