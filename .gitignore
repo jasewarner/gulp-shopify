@@ -49,3 +49,5 @@ Thumbs.db
 !CHANGELOG.md
 !composer.json
 !.scss-lint.yml
+!.shopifyignore
+!.theme-check.yml

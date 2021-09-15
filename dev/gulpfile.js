@@ -36,7 +36,6 @@ gulp.task(`scss`, gulp.series(`scss-lint`, () => {
         .pipe(autoprefixer({ cascade : false }))
         .pipe(rename((path) => {
             path.extname = `.liquid`;
-            // console.log(path);
         }))
         .pipe(replace(`"{{`, "{{"))
         .pipe(replace(`}}"`, "}}"))
@@ -51,9 +50,6 @@ gulp.task(`scss`, gulp.series(`scss-lint`, () => {
  */
 const jsFiles = [
     `./node_modules/babel-polyfill/dist/polyfill.js`,
-    `./node_modules/vanilla-lazyload/dist/lazyload.js`,
-    `./node_modules/bootstrap/js/dist/util.js`,
-    `./node_modules/bootstrap/js/dist/modal.js`,
     srcJS,
 ];
 
