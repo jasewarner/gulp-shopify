@@ -35,6 +35,7 @@ gulp.task(`scss`, gulp.series(`scss-lint`, () => {
         .pipe(sass({ outputStyle: `expanded` }).on(`error`, sass.logError))
         .pipe(autoprefixer({ cascade : false }))
         .pipe(rename((path) => {
+            path.basename = path.basename.replace(`.scss`, `.css`)
             path.extname = `.liquid`;
         }))
         .pipe(replace(`"{{`, "{{"))

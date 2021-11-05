@@ -1,6 +1,6 @@
 # Gulp + Shopify
 
-Version: 2.0.0
+Version: 2.0.1
 
 ## Author
 
@@ -34,40 +34,13 @@ In Terminal `cd` into the `dev` directory and install the Gulp packages (if you 
 
 `npm install`
 
-Once you have installed the packages, in Terminal, run `gulp watch`.
+Once you have installed the packages, in Terminal, run `gulp` and then `gulp watch`.
 
-Any changes to the SCSS files in `dev/sass/` will be reflected in `theme.scss.liquid` and/or `password.scss.liquid` in `assets`.
+Any changes to the SCSS files in `dev/sass/` will be reflected in `theme.css.liquid` and/or `password.css.liquid` in `assets`.
 
 Any alterations to the JS files in `dev/js/` will be concatenated and uglified in `assets` to `theme.js`.
 
 Images added to `dev/image` will be copied across to the `assets` directory. Similarly, any fonts added to `dev/font` will be copied across to `assets`.
-
-**Tip:** Use the `shopify()` SCSS function to use values declared in `config/settings_schema.json`. For example:
-
-```json
-{
-  "type": "color",
-  "id": "colour_body_text",
-  "label": "Body text",
-  "default": "#000"
-}
-```
-
-The HEX value returned from the above example could be used in the SCSS by utilising the `shopify()` function like so:
-
-```css
-body {
-  color: shopify('colour_body_text');
-}
-```
-
-or, if declaring a variable, like this:
-
-```scss
-$body-color: shopify('colour_body_text');
-```
-
-It’s a neat solution, and you have [@derekmorash](https://gist.github.com/derekmorash/1e82ff9ffdf675ce00af7d0c3c99fb0c) to thank for it!
 
 ### Shopify CLI
 

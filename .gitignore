@@ -44,6 +44,7 @@ Thumbs.db
 
 # track these files, if they exist
 !.gitignore
+!.gitkeep
 !.editorconfig
 !README.md
 !CHANGELOG.md
