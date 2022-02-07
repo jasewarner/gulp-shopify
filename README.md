@@ -6,7 +6,7 @@ Version: 2.0.1
 
 Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 
-> If this project has been a helping hand to you, feel free to [buy this grateful developer a beer](https://www.buymeacoffee.com/jasewarner/) 🍻
+> If this project has been a helping hand to you, feel free to [give this grateful developer a coffee](https://www.buymeacoffee.com/jasewarner/) ☕️
 
 ## Synopsis
 
