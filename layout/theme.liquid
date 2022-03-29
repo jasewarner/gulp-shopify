@@ -1,36 +1,37 @@
 <!doctype html>
-<html lang="{{ shop.locale }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{{ page_title }}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
-
-  {% if page_description %}
-    <meta name="description" content="{{ page_description | escape }}" />
-  {% endif %}
-
-  <link rel="canonical" href="{{ canonical_url }}">
-  <meta name="theme-color" content="">
-
-  {% if settings.favicon != blank and settings.favicon contains '.png' %}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: 'master' }}" type="image/png" />
-  {% elsif settings.favicon != blank and settings.favicon contains '.ico' %}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: 'master' }}" type="image/x-icon" />
-  {% endif %}
-
-  {{ content_for_header }}
-
-  {{ 'theme.css' | asset_url | stylesheet_tag }}
-</head>
-
-<body class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != blank %} template-suffix-{{ template.suffix }}{% endif %}{% if template contains 'customers' %} template-customer-area{% endif %}">
-  {% section 'header' %}
-
-  {{ content_for_layout }}
-
-  {% section 'footer' %}
-
-  {{ 'theme.js' | asset_url | script_tag }}
-</body>
-</html>
+  <html lang="{{ shop.locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page_title }}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}" />
+    {% endif %}
+  
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="theme-color" content="">
+  
+    {% if settings.favicon != blank and settings.favicon contains '.png' %}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: 'master' }}" type="image/png" />
+    {% elsif settings.favicon != blank and settings.favicon contains '.ico' %}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: 'master' }}" type="image/x-icon" />
+    {% endif %}
+  
+    {{ content_for_header }}
+  
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  
+  <body class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != blank %} template-suffix-{{ template.suffix }}{% endif %}{% if template contains 'customers' %} template-customer-area{% endif %}">
+    {% section 'header' %}
+  
+    {{ content_for_layout }}
+  
+    {% section 'footer' %}
+  
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  </body>
+  </html>
+  
