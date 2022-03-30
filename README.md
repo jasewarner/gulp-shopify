@@ -1,6 +1,6 @@
 # Gulp + Shopify
 
-Version: 2.0.1
+Version: 2.0.2
 
 ## Author
 
@@ -22,7 +22,7 @@ You may also write your JavaScript in ES6 &ndash; The Gulp scripts task uses [Ba
 
 The theme Liquid and JSON files are all blank canvases – zero faffing, meaning you can crack on with the build right away.
 
-The theme includes the Bootstrap 4 grid and reboot scss files. These can be removed in `theme.scss.liquid` and `password.scss.liquid`, or, if you so wish, you may add more Bootstrap SCSS files using @import via `./node_modules/bootstrap-scss/`.
+The theme includes the Bootstrap 5 grid and reboot scss files. These can be removed in `theme.scss.liquid` and `password.scss.liquid`, or, if you so wish, you may add more Bootstrap SCSS files using @import via `./node_modules/bootstrap/scss/`.
 
 ## Installation
 
@@ -56,9 +56,7 @@ The Gulp build features the following helpful packages:
 
 * [gulp-autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer "gulp-autoprefixer GitHub page")
 * [gulp-babel](https://github.com/babel/gulp-babel "gulp-babel GitHub page")
-* [gulp-clean-css](https://github.com/scniro/gulp-clean-css "gulp-clean-css GitHub page")
 * [gulp-concat](https://github.com/contra/gulp-concat "gulp-concat GitHub page")
-* [gulp-csslint](https://github.com/lazd/gulp-csslint "gulp-csslint GitHub page")
 * [gulp-rename](https://github.com/hparra/gulp-rename "gulp-rename GitHub page")
 * [gulp-replace](https://github.com/lazd/gulp-replace "gulp-replace GitHub page")
 * [gulp-sass](https://github.com/dlmanning/gulp-sass "gulp-sass GitHub page")
