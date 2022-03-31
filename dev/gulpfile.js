@@ -57,7 +57,7 @@ const jsFiles = [
 gulp.task(`js`, () => {
     return gulp.src(jsFiles)
         .pipe(babel({
-            presets: [`@babel/preset-env`]
+            presets: [`@babel/env`]
         }))
         .pipe(concat(`theme.js`))
         .pipe(uglify())
