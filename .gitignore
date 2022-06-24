@@ -4,7 +4,6 @@
 
 # ignore project files/directories
 node_modules/
-dev/package-lock.json
 
 # ignore OS generated files
 ehthumbs.db
