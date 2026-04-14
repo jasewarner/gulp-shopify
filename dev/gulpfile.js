@@ -1,42 +1,54 @@
-`use strict`;
+'use strict';
 
-const gulp = require(`gulp`);
-const babel = require(`gulp-babel`);
-const autoprefixer = require(`gulp-autoprefixer`);
-const changed = require(`gulp-changed`);
-const cleanCss = require(`gulp-clean-css`);
-const concat = require(`gulp-concat`);
-const rename = require(`gulp-rename`);
-const replace = require(`gulp-replace`);
-const sass = require(`gulp-sass`)(require(`node-sass`));
-const uglify = require(`gulp-uglify`);
-const scssLint = require(`gulp-scss-lint`);
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const cleanCss = require('gulp-clean-css');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
+const replace = require('gulp-replace');
+const sass = require('gulp-sass')(require('sass'));
+const uglify = require('gulp-uglify');
 
-/**
- * Asset paths.
- */
-const srcSCSS = `scss/**/*.scss`;
-const srcJS = `js/*.js`;
-const assetsDir = `../assets/`;
+let autoprefixer;
+let changed;
+const startup = async () => {
+    autoprefixer = (await import('gulp-autoprefixer')).default;
+    changed = (await import('gulp-changed')).default;
+}
 
 /**
- * Scss lint
+ * Asset paths
  */
-gulp.task(`scss-lint`, () => {
-    return gulp.src(srcSCSS)
-        .pipe(scssLint());
+const srcScss = 'scss/**/*.scss';
+const srcJs = 'js/*.js';
+const assetsDir = '../assets/';
+
+/**
+ * Task to run before anything else
+ */
+gulp.task('startup', async () => {
+    await startup();
 });
 
 /**
- * SCSS task
+ * Task for styles
  */
-gulp.task(`scss`, gulp.series(`scss-lint`, () => {
-    return gulp.src(`scss/*.scss.liquid`)
-        .pipe(sass({ outputStyle: `expanded` }).on(`error`, sass.logError))
+gulp.task('css', gulp.series('startup', () => {
+    return gulp.src('scss/*.scss.liquid')
+        .pipe(sass.sync({
+            outputStyle: 'expanded',
+            // Suppress the "slash as division" and other API warnings
+            // that cause modern Sass to hang or fail on Bootstrap 5 code
+            quietDeps: true,
+            // Help Sass to find @import for Bootstrap files
+            includePaths: ['node_modules'],
+            // Silence the @import warnings
+            silenceDeprecations: ['import', 'legacy-js-api'],
+        }).on('error', sass.logError))
         .pipe(autoprefixer({ cascade : false }))
         .pipe(rename((path) => {
-            path.basename = path.basename.replace(`.scss`, `.css`)
-            path.extname = `.liquid`;
+            path.basename = path.basename.replace('.scss', '.css')
+            path.extname = '.liquid';
         }))
         .pipe(replace(`"{{`, "{{"))
         .pipe(replace(`}}"`, "}}"))
@@ -45,21 +57,19 @@ gulp.task(`scss`, gulp.series(`scss-lint`, () => {
 }));
 
 /**
- * JS task
- *
- * Note: use npm to install libraries and add them below, like the babel-polyfill example
+ * Scripts task
  */
 const jsFiles = [
-    `./node_modules/babel-polyfill/dist/polyfill.js`,
-    srcJS,
+    // 'node_modules/dir/example.js',
+    srcJs
 ];
 
-gulp.task(`js`, () => {
+gulp.task('js', () => {
     return gulp.src(jsFiles)
         .pipe(babel({
-            presets: [`@babel/env`]
+            presets: ['@babel/env']
         }))
-        .pipe(concat(`theme.js`))
+        .pipe(concat('theme.js'))
         .pipe(uglify())
         .pipe(gulp.dest(assetsDir));
 });
@@ -67,32 +77,32 @@ gulp.task(`js`, () => {
 /**
  * Images task
  */
-gulp.task(`images`, () => {
-    return gulp.src(`images/**`)
+gulp.task('images', gulp.series('startup', () => {
+    return gulp.src('images/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
-});
+}));
 
 /**
  * Fonts task
  */
-gulp.task(`fonts`, () => {
-    return gulp.src(`fonts/**`)
+gulp.task('fonts', gulp.series('startup', () => {
+    return gulp.src('fonts/**')
         .pipe(changed(assetsDir)) // ignore unchanged files
         .pipe(gulp.dest(assetsDir))
-});
+}));
 
 /**
  * Watch task
  */
-gulp.task(`watch`, () => {
-    gulp.watch(srcSCSS, gulp.series(`scss`));
-    gulp.watch(srcJS, gulp.series(`js`));
-    gulp.watch(`images/*.{jpg,jpeg,png,gif,svg}`, gulp.series(`images`));
-    gulp.watch(`fonts/*.{eot,svg,ttf,woff,woff2}`, gulp.series(`fonts`));
+gulp.task('watch', () => {
+    gulp.watch(srcScss, gulp.series('css'));
+    gulp.watch(srcJs, gulp.series('js'));
+    gulp.watch(`images/*.{jpg,jpeg,png,gif,svg}`, gulp.series('images'));
+    gulp.watch(`fonts/*.{eot,svg,ttf,woff,woff2}`, gulp.series('fonts'));
 });
 
 /**
  * Default task
  */
-gulp.task(`default`, gulp.series(`scss`, `js`, `images`, `fonts`));
+gulp.task('default', gulp.series('css', 'js', 'images', 'fonts'));

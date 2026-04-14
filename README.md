@@ -1,6 +1,6 @@
 # Gulp + Shopify
 
-Version: 2.0.3
+Version: 2.0.4
 
 ## Author
 
@@ -9,8 +9,6 @@ Jase Warner ( [https://jase.io](https://jase.io "Jase Warner’s website") )
 > If this project has been a helping hand to you, feel free to [give this grateful developer a coffee](https://www.buymeacoffee.com/jasewarner/) ☕️
 
 ## Synopsis
-
-**Update:** 2021/09/15 – This project has been updated to support Shopify CLI and [Online Store 2.0](https://www.shopify.com/partners/blog/shopify-online-store "Online Store 2.0 article") features.
 
 *Gulp + Shopify* is for Developers wishing to use [Gulp.js](http://gulpjs.com/ "Gulp.js website") in combination with [Shopify CLI](https://shopify.dev/themes/tools/cli "Shopify CLI page") to develop Shopify themes &ndash; a tidy solution to the problem with Shopify not allowing sub-directories within the `assets` directory.
 
@@ -61,7 +59,6 @@ The Gulp build features the following helpful packages:
 * [gulp-replace](https://github.com/lazd/gulp-replace "gulp-replace GitHub page")
 * [gulp-sass](https://github.com/dlmanning/gulp-sass "gulp-sass GitHub page")
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify "gulp-uglify GitHub page")
-* [gulp-scss-lint](https://github.com/juanfran/gulp-scss-lint "gulp-scss-lint GitHub page")
 
 ## Credits
 
