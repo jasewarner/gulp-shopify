@@ -9,8 +9,8 @@
   "author": "Jase Warner",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "bootstrap": "^5.3.8",
     "gulp": "^5.0.1",
     "gulp-autoprefixer": "^10.0.0",
