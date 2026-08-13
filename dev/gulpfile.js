@@ -1,39 +1,35 @@
 'use strict';
 
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const cleanCss = require('gulp-clean-css');
-const concat = require('gulp-concat');
-const rename = require('gulp-rename');
-const replace = require('gulp-replace');
-const sass = require('gulp-sass')(require('sass'));
-const uglify = require('gulp-uglify');
+import gulp from 'gulp';
+import babel from 'gulp-babel';
+import * as dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+import cleanCss from 'gulp-clean-css';
+import concat from 'gulp-concat';
+import rename from 'gulp-rename';
+import replace from 'gulp-replace';
+import uglify from 'gulp-uglify';
+import autoprefixer from 'gulp-autoprefixer';
+import changed from 'gulp-changed';
 
-let autoprefixer;
-let changed;
-const startup = async () => {
-    autoprefixer = (await import('gulp-autoprefixer')).default;
-    changed = (await import('gulp-changed')).default;
-}
+const sass = gulpSass(dartSass);
 
 /**
- * Asset paths
+ * Paths
  */
 const srcScss = 'scss/**/*.scss';
 const srcJs = 'js/*.js';
+const jsBundle = [
+    // 'node_modules/dir/example.js',
+    srcJs
+];
 const assetsDir = '../assets/';
 
-/**
- * Task to run before anything else
- */
-gulp.task('startup', async () => {
-    await startup();
-});
 
 /**
- * Task for styles
+ * Styles
  */
-gulp.task('css', gulp.series('startup', () => {
+export const css = () => {
     return gulp.src('scss/*.scss.liquid')
         .pipe(sass.sync({
             outputStyle: 'expanded',
@@ -54,55 +50,50 @@ gulp.task('css', gulp.series('startup', () => {
         .pipe(replace(`}}"`, "}}"))
         .pipe(cleanCss())
         .pipe(gulp.dest(assetsDir));
-}));
+};
 
 /**
- * Scripts task
+ * Scripts
  */
-const jsFiles = [
-    // 'node_modules/dir/example.js',
-    srcJs
-];
-
-gulp.task('js', () => {
-    return gulp.src(jsFiles)
+export const js = () => {
+    return gulp.src(jsBundle)
         .pipe(babel({
             presets: ['@babel/env']
         }))
         .pipe(concat('theme.js'))
         .pipe(uglify())
         .pipe(gulp.dest(assetsDir));
-});
+};
 
 /**
- * Images task
+ * Images
  */
-gulp.task('images', gulp.series('startup', () => {
+export const images = () => {
     return gulp.src('images/**')
-        .pipe(changed(assetsDir)) // ignore unchanged files
-        .pipe(gulp.dest(assetsDir))
-}));
+        .pipe(changed(assetsDir)) // Ignore unchanged files
+        .pipe(gulp.dest(assetsDir));
+};
 
 /**
- * Fonts task
+ * Fonts
  */
-gulp.task('fonts', gulp.series('startup', () => {
+export const fonts = () => {
     return gulp.src('fonts/**')
-        .pipe(changed(assetsDir)) // ignore unchanged files
-        .pipe(gulp.dest(assetsDir))
-}));
+        .pipe(changed(assetsDir)) // Ignore unchanged files
+        .pipe(gulp.dest(assetsDir));
+};
 
 /**
  * Watch task
  */
-gulp.task('watch', () => {
-    gulp.watch(srcScss, gulp.series('css'));
-    gulp.watch(srcJs, gulp.series('js'));
-    gulp.watch(`images/*.{jpg,jpeg,png,gif,svg}`, gulp.series('images'));
-    gulp.watch(`fonts/*.{eot,svg,ttf,woff,woff2}`, gulp.series('fonts'));
-});
+export const watch = () => {
+    gulp.watch(srcScss, css);
+    gulp.watch(srcJs, js);
+    gulp.watch(`images/*.{jpg,jpeg,png,gif,svg}`, images);
+    gulp.watch(`fonts/*.{eot,svg,ttf,woff,woff2}`, fonts);
+};
 
 /**
  * Default task
  */
-gulp.task('default', gulp.series('css', 'js', 'images', 'fonts'));
+export default gulp.series(css, js, images, fonts);
